@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        const promise = new Promise((res,rej)=>{
+            return res();
+            return rej()
+        })
+        console.log(promise.then((res)=>console.log(res))
+        .catch((rej)=>console.log(rej)))
+
+        const prom = new Promise((res,rej)=>{
+            const bool = true;
+            if(bool){
+                res("receiving",{id:1,name:"Bob"})   //takes only single arg
+            }else{
+                rej("rejected error");
+            }
+        })
+        prom.then((a,b)=>{
+            console.log(a,b)
+        })
+
+        const prom1 = new Promise((res,rej)=>{
+            const bool = false;
+            if(bool){
+                res("receiving",{id:1,name:"Bob"})
+            }else{
+                rej("rejected error");
+            }
+        })
+        prom1.then((a)=>{
+            console.log(a)
+        }).catch((a)=>{
+            console.log(a)
+        })
+
+        const resolved = Promise.resolve("resolved")
+        console.log(resolved)
+
+        const rejected = Promise.reject("rejected");
+        console.log(rejected)
+
+        const obj =  
+        {id: 2, name: 'Ervin Howell'}
+        // const fetchAlbums = new Promise((res)=>{
+        //     res(obj)
+        // })
+
+        // const fetchId = new Promise((res)=>{
+        //     res(obj.id)
+        // })
+
+        // const fetchName = new Promise((res)=>{
+        //     res(obj.name)
+        // })
+
+        // Promise.all([fetchAlbums,fetchId,fetchName]).then((res)=>{console.log(res)}).catch((rej)=>{console.log(rej)})
+        
+
+        // const fetchAlbums = new Promise((res)=>{
+        //     res(obj)
+        // })
+
+        // const fetchId = new Promise((res,rej)=>{
+        //     rej("error")
+        // })
+
+        // const fetchName = new Promise((res)=>{
+        //     res(obj.name)
+        // })
+
+        // Promise.all([fetchAlbums,fetchId,fetchName]).then((res)=>{console.log(res)}).catch((rej)=>{console.log(rej)})
+
+        const fetchAlbums = new Promise((res,rej)=>{
+            rej("error")
+        })
+
+        const fetchId = new Promise((res,rej)=>{
+            rej("error")
+        })
+
+        const fetchName = new Promise((res)=>{
+            res(obj.name)
+        })
+
+        Promise.all([fetchAlbums,fetchId,fetchName]).then((res)=>{console.log(res)}).catch((rej)=>{console.log(rej)})
+    </script>
+</body>
+</html>
